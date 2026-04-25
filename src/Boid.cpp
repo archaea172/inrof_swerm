@@ -20,6 +20,8 @@ void Boid::update_pos(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, Eigen::MatrixXd 
         this->k_alignment * this->make_alignment_power(x_i, x_j, v_j, Ir) +
         this->k_gravity * this->make_gravity_power(x_i, x_j, Ir);
         
+    double v_max = 0.1;
+    this->vel << std::clamp(this->vel(0), -v_max, v_max), std::clamp(this->vel(1), -v_max, v_max);
     this->pos += this->vel;
 }
 
