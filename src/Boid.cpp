@@ -60,7 +60,7 @@ Eigen::Vector2d Boid::make_alignment_power(Eigen::Vector2d x_i, Eigen::MatrixXd 
         if (I_r_2 > D_square) 
         {
             double velVN = v_j.col(i).norm();
-            Eigen::Vector2d velD = v_j.row(i) / std::max(velVN, 1.0);
+            Eigen::Vector2d velD = v_j.col(i) / std::max(velVN, 1.0);
             sum += velD;
             in_num++;
         }
@@ -104,7 +104,7 @@ Boids::Boids(int boid_num, double ir, double k_separation, double k_alignment, d
     boids.reserve(boid_num);
     for (int i = 0; i < boid_num; ++i)
     {
-        boids.emplace_back(ir, double k_separation, double k_alignment, double k_gravity);
+        boids.emplace_back(ir, k_separation, k_alignment, k_gravity);
     }
     this->boid_num_ = boid_num;
     this->ir = ir;
@@ -114,12 +114,12 @@ void Boids::control_loop()
 {
     Eigen::MatrixXd pre_pos(2, boids.size());
     Eigen::MatrixXd pre_vel(2, boids.size());
-    for (int i = 0; i < boids.size(); ++i) 
+    for (int i = 0; i < static_cast<int>(boids.size()); ++i) 
     {
         pre_pos.col(i) = boids[i].pos;
         pre_vel.col(i) = boids[i].vel;
     }
-    for (int i = i; i < this->boid_num_; ++i)
+    for (int i = 0; i < this->boid_num_; ++i)
     {
         Eigen::Vector2d x_i = this->boids[i].pos;
         Eigen::MatrixXd x_j = this->remove_col(pre_pos, i);
