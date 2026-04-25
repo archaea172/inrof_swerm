@@ -8,6 +8,11 @@ Boid::~Boid()
 {
 }
 
+Eigen::Vector2d Boid::make_power()
+{
+    
+}
+
 Eigen::Vector2d Boid::make_separation_poser(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, double Ir)
 {
     double I_r_2 = pow(Ir, 2);
