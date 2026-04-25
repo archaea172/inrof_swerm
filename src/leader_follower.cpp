@@ -19,38 +19,28 @@ cv::Point convert_point(double x, double y)
     );
 }
 
-cv::Mat render_frame(const Boids& boids)
+void onMouse(int event, int x, int y, int flags, void* userdata)
 {
-    cv::Mat img(image_size.height, image_size.width, CV_8UC3, cv::Scalar(255, 255, 255));
-
-    for (const auto& boid : boids.boids) {
-        cv::Point p = convert_point(boid.pos(0), boid.pos(1));
-        cv::circle(img, p, 20, cv::Scalar(255, 0, 0), -1);
+    if (event == cv::EVENT_MOUSEMOVE) {
+        std::cout << "mouse: x=" << x << ", y=" << y << std::endl;
     }
-
-    return img;
 }
 
 int main()
 {
-    const int boid_count = 50;
-    const int frame_count = 120;
-    const int frame_duration_ms = 50;
+    cv::Mat img(image_size.height, image_size.width, CV_8UC3, cv::Scalar(255, 255, 255));
 
-    Boids boids(boid_count, max, 0.9, 1.1, 0.5, 0.5);
-
-    std::filesystem::create_directories("img");
-
-    std::filesystem::create_directories("img/frames");
-
-    for (int frame_index = 0; frame_index < frame_count; ++frame_index) {
-        cv::Mat frame = render_frame(boids);
-
-        std::ostringstream filename;
-        filename << "img/frames/frame_" << std::setw(4) << std::setfill('0') << frame_index << ".png";
-        cv::imwrite(filename.str(), frame);
-        boids.control_loop();
+    cv::namedWindow("swerm");
+    cv::setMouseCallback("swerm", onMouse);
+    
+    while (true)
+    {
+        cv::imshow("swerm", img);
+        if (cv::waitKey(1) == 27) {
+            break;
+        }
     }
-
+    
+    cv::destroyAllWindows();
     return 0;
 }
