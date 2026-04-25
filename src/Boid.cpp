@@ -1,7 +1,11 @@
 #include "Boid.hpp"
 
-Boid::Boid()
+Boid::Boid(double ir)
 {
+    std::mt19937 gen(42);
+    std::uniform_real_distribution<> dist(-ir, ir);
+    
+    this->x << dist(gen), dist(gen);
 }
 
 Boid::~Boid()
