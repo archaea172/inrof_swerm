@@ -1,6 +1,7 @@
 #include "Boid.hpp"
 
-Boid::Boid(double ir)
+Boid::Boid(double ir, double k_separation, double k_alignment, double k_gravity)
+: k_separation(k_separation), k_alignment(k_alignment), k_gravity(k_gravity)
 {
     static std::mt19937 gen(std::random_device{}());
     std::uniform_real_distribution<> dist(-ir, ir);
@@ -98,12 +99,12 @@ Eigen::Vector2d Boid::make_gravity_power(Eigen::Vector2d x_i, Eigen::MatrixXd x_
     return vel;
 }
 
-Boids::Boids(int boid_num, double ir)
+Boids::Boids(int boid_num, double ir, double k_separation, double k_alignment, double k_gravity)
 {
     boids.reserve(boid_num);
     for (int i = 0; i < boid_num; ++i)
     {
-        boids.emplace_back(ir);
+        boids.emplace_back(ir, double k_separation, double k_alignment, double k_gravity);
     }
     this->boid_num_ = boid_num;
     this->ir = ir;

@@ -18,7 +18,8 @@ int main()
 {
     cv::Mat img(image_size.height, image_size.width, CV_8UC3, cv::Scalar(255, 255, 255));
 
-    Boids boids(50, max);
+    Boids boids(50, max, 0.9, 1.1, 0.5);
+    
 
     for (int i = 0; i < 50; ++i) {
         cv::Point p = convert_point(boids.boids[i].pos(0), boids.boids[i].pos(1));

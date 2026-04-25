@@ -8,7 +8,7 @@
 class Boid
 {
 public:
-    Boid(double ir);
+    Boid(double ir, double k_separation, double k_alignment, double k_gravity);
     ~Boid();
     void update_pos(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, Eigen::MatrixXd v_j, double Ir);
 
@@ -26,7 +26,7 @@ private:
 class Boids
 {
 public:
-    Boids(int boid_num, double ir);
+    Boids(int boid_num, double ir, double k_separation, double k_alignment, double k_gravity);
     void control_loop();
 
     std::vector<Boid> boids;
