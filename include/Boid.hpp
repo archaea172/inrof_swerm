@@ -1,6 +1,8 @@
 #pragma once
 
+#include <Eigen/Dense>
 #include <vector>
+#include <cmath>
 
 class Boid
 {
@@ -8,7 +10,7 @@ public:
     Boid();
     ~Boid();
 private:
-    double make_separation_poser(std::vector<double> x_i, std::vector<double> x_j, double Ir);
-    double make_alignment_power(std::vector<double> x_i, std::vector<double> x_j, double Ir);
-    double make_gravity_power(std::vector<double> x_i, std::vector<double> x_j, double Ir);
+    Eigen::Vector2d make_separation_poser(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, double Ir);
+    Eigen::Vector2d make_alignment_power(Eigen::Vector2d x_i, Eigen::Vector2d x_j, double Ir);
+    Eigen::Vector2d make_gravity_power(Eigen::Vector2d x_i, Eigen::Vector2d x_j, double Ir);
 };
