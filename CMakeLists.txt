@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.13)
 project(inrof_swerm CXX)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 find_package(OpenCV REQUIRED)
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
