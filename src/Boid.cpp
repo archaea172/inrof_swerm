@@ -13,9 +13,9 @@ Eigen::Vector2d Boid::make_separation_poser(Eigen::Vector2d x_i, Eigen::MatrixXd
     double I_r_2 = pow(Ir, 2);
     Eigen::Vector2d sum = Eigen::Vector2d::Zero();
     int in_num = 0;
-    for (size_t i = 0; i < x_j.cols(); i++) 
+    for (size_t i = 0; i < x_j.rows(); i++) 
     {
-        Eigen::Vector2d i_j_diff = x_i - x_j.col(i);
+        Eigen::Vector2d i_j_diff = x_i - x_j.row(i);
         double D_square = i_j_diff.squaredNorm();
         if (I_r_2 > D_square) 
         {
@@ -31,5 +31,5 @@ Eigen::Vector2d Boid::make_separation_poser(Eigen::Vector2d x_i, Eigen::MatrixXd
 
     if (in_num != 0) vel = sum / in_num;
 
-    return vel;
+    return -vel;
 }
