@@ -2,7 +2,7 @@
 
 Boid::Boid(double ir)
 {
-    std::mt19937 gen(42);
+    static std::mt19937 gen(std::random_device{}());
     std::uniform_real_distribution<> dist(-ir, ir);
     
     this->x << dist(gen), dist(gen);
