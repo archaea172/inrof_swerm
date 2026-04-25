@@ -21,7 +21,7 @@ int main()
     Boids boids(50, max);
 
     for (int i = 0; i < 50; ++i) {
-        cv::Point p = convert_point(boids.boids[i].x(0), boids.boids[i].x(1));
+        cv::Point p = convert_point(boids.boids[i].pos(0), boids.boids[i].pos(1));
         cv::circle(img, p, 20, cv::Scalar(255, 0, 0), -1);
     }
     
