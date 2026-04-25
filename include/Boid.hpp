@@ -20,3 +20,11 @@ private:
 
     double k_separation, k_alignment, k_gravity;
 };
+
+class Boids
+{
+public:
+    Boids(int boid_num, double ir);
+    std::vector<Boid> boids;
+
+};

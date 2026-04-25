@@ -95,3 +95,12 @@ Eigen::Vector2d Boid::make_gravity_power(Eigen::Vector2d x_i, Eigen::MatrixXd x_
 
     return vel;
 }
+
+Boids::Boids(int boid_num, double ir)
+{
+    boids.reserve(boid_num);
+    for (int i = 0; i < boid_num; ++i)
+    {
+        boids.emplace_back(ir);
+    }
+}

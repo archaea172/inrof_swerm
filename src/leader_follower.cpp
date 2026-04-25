@@ -18,17 +18,11 @@ int main()
 {
     cv::Mat img(image_size.height, image_size.width, CV_8UC3, cv::Scalar(255, 255, 255));
 
-    const int boid_count = 100;
-    std::vector<Boid> boids;
-    boids.reserve(boid_count);
+    Boids boids(50, max);
 
-    for (int i = 0; i < boid_count; ++i) {
-        boids.emplace_back(max);
-    }
-
-    for (const auto& boid : boids) {
-        cv::Point p = convert_point(boid.x(0), boid.x(1));
-        cv::circle(img, p, 5, cv::Scalar(255, 0, 0), -1);
+    for (int i = 0; i < 50; ++i) {
+        cv::Point p = convert_point(boids.boids[i].x(0), boids.boids[i].x(1));
+        cv::circle(img, p, 20, cv::Scalar(255, 0, 0), -1);
     }
     
     cv::imwrite("img/test.png", img);
