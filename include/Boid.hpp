@@ -11,6 +11,6 @@ public:
     ~Boid();
 private:
     Eigen::Vector2d make_separation_poser(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, double Ir);
-    Eigen::Vector2d make_alignment_power(Eigen::Vector2d x_i, Eigen::Vector2d x_j, double Ir);
-    Eigen::Vector2d make_gravity_power(Eigen::Vector2d x_i, Eigen::Vector2d x_j, double Ir);
+    Eigen::Vector2d make_alignment_power(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, Eigen::MatrixXd v_j,double Ir);
+    Eigen::Vector2d make_gravity_power(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, double Ir);
 };
