@@ -20,6 +20,14 @@ target_link_libraries(Boid
     Eigen3::Eigen
 )
 
+add_library(follower
+    src/follower.cpp
+)
+
+target_link_libraries(follower
+    Eigen3::Eigen
+)
+
 include_directories(
   ${OpenCV_INCLUDE_DIRS}
 )
@@ -32,4 +40,5 @@ target_link_libraries(leader_follower
     Boid
     Eigen3::Eigen
     ${OpenCV_LIBS}
+    follower
 )

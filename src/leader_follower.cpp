@@ -37,7 +37,7 @@ int main()
     const int frame_count = 120;
     const int frame_duration_ms = 50;
 
-    Boids boids(boid_count, max, 0.9, 1.1, 0.5);
+    Boids boids(boid_count, max, 0.9, 1.1, 0.5, 0.5);
 
     std::filesystem::create_directories("img");
 

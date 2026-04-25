@@ -16,7 +16,7 @@ public:
     Eigen::Vector2d pos;
     Eigen::Vector2d vel;
 
-private:
+protected:
     Eigen::Vector2d make_separation_power(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, double Ir);
     Eigen::Vector2d make_alignment_power(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, Eigen::MatrixXd v_j,double Ir);
     Eigen::Vector2d make_gravity_power(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, double Ir);
@@ -28,7 +28,7 @@ private:
 class Boids
 {
 public:
-    Boids(int boid_num, double ir, double k_separation, double k_alignment, double k_gravity);
+    Boids(int boid_num, double ir, double k_separation, double k_alignment, double k_gravity, double v_max);
     void control_loop();
 
     std::vector<Boid> boids;
