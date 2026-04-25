@@ -9,7 +9,7 @@
 class Boid
 {
 public:
-    Boid(double ir, double k_separation, double k_alignment, double k_gravity);
+    Boid(double ir, double k_separation, double k_alignment, double k_gravity, double v_max);
     ~Boid();
     void update_pos(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, Eigen::MatrixXd v_j, double Ir);
 
@@ -22,6 +22,7 @@ private:
     Eigen::Vector2d make_gravity_power(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, double Ir);
 
     double k_separation, k_alignment, k_gravity;
+    double v_max_;
 };
 
 class Boids

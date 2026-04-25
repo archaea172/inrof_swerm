@@ -1,7 +1,7 @@
 #include "Boid.hpp"
 
-Boid::Boid(double ir, double k_separation, double k_alignment, double k_gravity)
-: k_separation(k_separation), k_alignment(k_alignment), k_gravity(k_gravity)
+Boid::Boid(double ir, double k_separation, double k_alignment, double k_gravity, double v_max)
+: k_separation(k_separation), k_alignment(k_alignment), k_gravity(k_gravity), v_max_(v_max)
 {
     static std::mt19937 gen(std::random_device{}());
     std::uniform_real_distribution<> dist(-ir, ir);
@@ -20,8 +20,7 @@ void Boid::update_pos(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, Eigen::MatrixXd 
         this->k_alignment * this->make_alignment_power(x_i, x_j, v_j, Ir) +
         this->k_gravity * this->make_gravity_power(x_i, x_j, Ir);
         
-    double v_max = 0.1;
-    this->vel << std::clamp(this->vel(0), -v_max, v_max), std::clamp(this->vel(1), -v_max, v_max);
+    this->vel << std::clamp(this->vel(0), -v_max_, v_max_), std::clamp(this->vel(1), -v_max_, v_max_);
     this->pos += this->vel;
 }
 
