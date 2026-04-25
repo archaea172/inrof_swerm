@@ -8,9 +8,12 @@ Boid::~Boid()
 {
 }
 
-Eigen::Vector2d Boid::make_power()
+Eigen::Vector2d Boid::make_power(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, Eigen::MatrixXd v_j,double Ir)
 {
-    
+    return 
+    this->k_separation * this->make_separation_poser(x_i, x_j, Ir) +
+    this->k_alignment * this->make_alignment_power(x_i, x_j, v_j, Ir) +
+    this->k_gravity * this->make_gravity_power(x_i, x_j, Ir);
 }
 
 Eigen::Vector2d Boid::make_separation_poser(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, double Ir)
