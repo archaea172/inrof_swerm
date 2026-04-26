@@ -12,3 +12,18 @@ public:
 protected:
     double k_follow;
 };
+
+class followers
+{
+public:
+    followers(int follower_num, double ir, double k_separation, double k_alignment, double k_gravity, double k_follow, double v_max);
+    void control_loop(Eigen::Vector2d leader_pos);
+
+    std::vector<follower> Followers;
+
+private:
+    Eigen::MatrixXd remove_col(const Eigen::MatrixXd& A, int k);
+
+    int follower_num_;
+    double ir;
+};
