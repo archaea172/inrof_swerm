@@ -14,7 +14,7 @@ Boid::~Boid()
 {
 }
 
-void Boid::update_pos(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, Eigen::MatrixXd v_j, double Ir)
+void Boid::update_pos(const Eigen::Vector2d& x_i, const Eigen::MatrixXd& x_j, const Eigen::MatrixXd& v_j, double Ir)
 {
     this->vel = this->k_separation * this->make_separation_power(x_i, x_j, Ir) +
         this->k_alignment * this->make_alignment_power(x_i, x_j, v_j, Ir) +
@@ -24,7 +24,7 @@ void Boid::update_pos(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, Eigen::MatrixXd 
     this->pos += this->vel;
 }
 
-Eigen::Vector2d Boid::make_separation_power(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, double Ir)
+Eigen::Vector2d Boid::make_separation_power(const Eigen::Vector2d& x_i, const Eigen::MatrixXd& x_j, double Ir)
 {
     double I_r_2 = pow(Ir, 2);
     Eigen::Vector2d sum = Eigen::Vector2d::Zero();
@@ -49,7 +49,7 @@ Eigen::Vector2d Boid::make_separation_power(Eigen::Vector2d x_i, Eigen::MatrixXd
     return vel;
 }
 
-Eigen::Vector2d Boid::make_alignment_power(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, Eigen::MatrixXd v_j,double Ir)
+Eigen::Vector2d Boid::make_alignment_power(const Eigen::Vector2d& x_i, const Eigen::MatrixXd& x_j, const Eigen::MatrixXd& v_j,double Ir)
 {
     double I_r_2 = pow(Ir, 2);
     Eigen::Vector2d sum = Eigen::Vector2d::Zero();
@@ -75,7 +75,7 @@ Eigen::Vector2d Boid::make_alignment_power(Eigen::Vector2d x_i, Eigen::MatrixXd 
     return -vel;
 }
 
-Eigen::Vector2d Boid::make_gravity_power(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, double Ir)
+Eigen::Vector2d Boid::make_gravity_power(const Eigen::Vector2d& x_i, const Eigen::MatrixXd& x_j, double Ir)
 {
     double I_r_2 = pow(Ir, 2);
     Eigen::Vector2d sum = Eigen::Vector2d::Zero();

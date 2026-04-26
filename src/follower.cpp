@@ -6,14 +6,14 @@ follower::follower(double ir, double k_separation, double k_alignment, double k_
     this->k_follow = k_follow;
 }
 
-Eigen::Vector2d follower::make_follow_power(Eigen::Vector2d x_i, Eigen::Vector2d x_l)
+Eigen::Vector2d follower::make_follow_power(const Eigen::Vector2d& x_i, const Eigen::Vector2d& x_l)
 {
     Eigen::Vector2d l_i_diff = x_l - x_i;
 
     return l_i_diff / l_i_diff.norm();
 }
 
-void follower::update_pos(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, Eigen::MatrixXd v_j, Eigen::Vector2d x_l, double Ir)
+void follower::update_pos(const Eigen::Vector2d& x_i, const Eigen::MatrixXd& x_j, const Eigen::MatrixXd& v_j, const Eigen::Vector2d& x_l, double Ir)
 {
     this->vel = this->k_separation * this->make_separation_power(x_i, x_j, Ir) +
         this->k_alignment * this->make_alignment_power(x_i, x_j, v_j, Ir) +
@@ -35,7 +35,7 @@ followers::followers(int follower_num, double ir, double k_separation, double k_
     this->ir = ir;
 }
 
-void followers::control_loop(Eigen::Vector2d leader_pos)
+void followers::control_loop(const Eigen::Vector2d& leader_pos)
 {
     Eigen::MatrixXd pre_pos(2, Followers.size());
     Eigen::MatrixXd pre_vel(2, Followers.size());
