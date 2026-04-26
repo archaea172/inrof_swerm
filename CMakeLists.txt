@@ -25,6 +25,7 @@ add_library(follower
 )
 
 target_link_libraries(follower
+    Boid
     Eigen3::Eigen
 )
 

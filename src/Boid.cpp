@@ -46,7 +46,7 @@ Eigen::Vector2d Boid::make_separation_power(Eigen::Vector2d x_i, Eigen::MatrixXd
 
     if (in_num != 0) vel = sum / in_num;
 
-    return -vel;
+    return vel;
 }
 
 Eigen::Vector2d Boid::make_alignment_power(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, Eigen::MatrixXd v_j,double Ir)
@@ -72,7 +72,7 @@ Eigen::Vector2d Boid::make_alignment_power(Eigen::Vector2d x_i, Eigen::MatrixXd 
 
     if (in_num != 0) vel = sum / in_num;
 
-    return vel;
+    return -vel;
 }
 
 Eigen::Vector2d Boid::make_gravity_power(Eigen::Vector2d x_i, Eigen::MatrixXd x_j, double Ir)
