@@ -19,6 +19,7 @@ add_library(Boid
 
 target_link_libraries(Boid
     Eigen3::Eigen
+    OpenMP::OpenMP_CXX
 )
 
 add_library(follower
@@ -28,6 +29,7 @@ add_library(follower
 target_link_libraries(follower
     Boid
     Eigen3::Eigen
+    OpenMP::OpenMP_CXX
 )
 
 include_directories(
@@ -43,4 +45,5 @@ target_link_libraries(leader_follower
     Eigen3::Eigen
     ${OpenCV_LIBS}
     follower
+    OpenMP::OpenMP_CXX
 )

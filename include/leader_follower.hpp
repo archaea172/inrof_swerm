@@ -4,6 +4,7 @@
 #include "follower.hpp"
 #include <opencv2/opencv.hpp>
 #include <random>
+#include <omp.h>
 
 cv::Point convert_point(double x, double y);
 Eigen::Vector2d inverse_convert_point(const cv::Point& point);
