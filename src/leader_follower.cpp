@@ -48,7 +48,7 @@ void onMouse(int event, int x, int y, int flags, void* userdata)
 int main()
 {
     leader leader_mouse;
-    followers followers_(50, 20, 10.0, 1.1, 0.5, 3, 0.5);
+    followers followers_(50, 20, 15.0, 1.1, 0.5, 3, 0.5);
 
     cv::namedWindow("swerm");
     cv::setMouseCallback("swerm", onMouse, &leader_mouse);
