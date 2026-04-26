@@ -44,6 +44,7 @@ void followers::control_loop(const Eigen::Vector2d& leader_pos)
         pre_pos.col(i) = Followers[i].pos;
         pre_vel.col(i) = Followers[i].vel;
     }
+    # pragma omp parallel for
     for (int i = 0; i < this->follower_num_; ++i)
     {
         Eigen::Vector2d x_i = this->Followers[i].pos;

@@ -29,6 +29,7 @@ Eigen::Vector2d Boid::make_separation_power(const Eigen::Vector2d& x_i, const Ei
     double I_r_2 = pow(Ir, 2);
     Eigen::Vector2d sum = Eigen::Vector2d::Zero();
     int in_num = 0;
+    # pragma omp parallel for
     for (size_t i = 0; i < x_j.cols(); i++) 
     {
         Eigen::Vector2d i_j_diff = x_i - x_j.col(i);
@@ -54,6 +55,7 @@ Eigen::Vector2d Boid::make_alignment_power(const Eigen::Vector2d& x_i, const Eig
     double I_r_2 = pow(Ir, 2);
     Eigen::Vector2d sum = Eigen::Vector2d::Zero();
     int in_num = 0;
+    # pragma omp parallel for
     for (size_t i = 0; i < x_j.cols(); i++) 
     {
         Eigen::Vector2d i_j_diff = x_i - x_j.col(i);
@@ -80,6 +82,7 @@ Eigen::Vector2d Boid::make_gravity_power(const Eigen::Vector2d& x_i, const Eigen
     double I_r_2 = pow(Ir, 2);
     Eigen::Vector2d sum = Eigen::Vector2d::Zero();
     int in_num = 0;
+    # pragma omp parallel for
     for (size_t i = 0; i < x_j.cols(); i++) 
     {
         Eigen::Vector2d i_j_diff = x_i - x_j.col(i);
@@ -120,6 +123,7 @@ void Boids::control_loop()
         pre_pos.col(i) = boids[i].pos;
         pre_vel.col(i) = boids[i].vel;
     }
+    # pragma omp parallel for
     for (int i = 0; i < this->boid_num_; ++i)
     {
         Eigen::Vector2d x_i = this->boids[i].pos;
